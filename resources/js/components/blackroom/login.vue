@@ -25,7 +25,6 @@
                         >
                     </v-card-text>
                     <v-form ref="userLogin">
-
                         <v-card-text>
                             <v-text-field
                                 prepend-icon="email"

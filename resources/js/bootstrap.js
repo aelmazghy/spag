@@ -42,6 +42,8 @@ window.Echo = new Echo({
     wsPort: 6001,
     encrypted: false,
     disableStats: true,
-    enabledTransports: ['ws']
+    enabledTransports: ['ws'],
+    //csrfToken: yourCsrfToken,
+
 });
 

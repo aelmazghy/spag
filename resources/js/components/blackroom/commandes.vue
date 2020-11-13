@@ -181,13 +181,25 @@ export default {
         }
     },
     created() {
-        Echo.join('orders')
-            .listen('OrderEvent', (event) => {
-                this.cart.push(event.order);
+      //  Echo.join('orders')
+          //  .listen('OrderEvent', (event) => {
+           //     this.cart.push(event.order);
+            //});
+    },
+    mounted(){
+        Echo.channel('Orders')
+            .listen('NewOrderEvent', (e) =>{
+               var audio = new Audio(window.location.origin+'/media/beep.mp3');
+               audio.play();
+               this.showNewOrder(e.order);
             });
     },
     methods: {
         moment,
+        showNewOrder(OrderData){
+          console.log(OrderData);
+          //$store.state.orders.push(OrderData);
+        },
         moreInfoOrder(orderId, orderName, orderProducts) {
             this.infoBox = true;
             this.OrderIdToView = orderId;

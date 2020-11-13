@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Events\NewOrderEvent;
 use App\Events\OrderEvent;
 use App\Http\Controllers\Controller;
 use App\Order;
@@ -82,8 +83,8 @@ class CustomerController extends Controller
         }
         \DB::commit();
 
-        broadcast(new OrderEvent($order));
-          //event(new OrderEvent($order));
+       // broadcast(new OrderEvent($order));
+          event(new NewOrderEvent($order));
         return Order::orderBy('id', 'DESC')->get();
     }
 
