@@ -30,6 +30,20 @@ class NewOrderEvent implements ShouldBroadcast
      *
      * @return \Illuminate\Broadcasting\Channel|array
      */
+    public function broadcastWith()
+    {
+        // This must always be an array. Since it will be parsed with json_encode()
+        // data
+        return [
+
+            'order' => $this->order,
+        ];
+    }
+    public function broadcastAs()
+    {
+        // event
+        return 'OrderEvent';
+    }
     public function broadcastOn()
     {
         return new Channel('Orders');
